@@ -5,9 +5,9 @@ type Person struct {
 	FirstName string `json:"firstName"`
 	LastName  string `json:"lastName"`
 	ID        string `json:"id"`
-	Phone     int    `json:"phone"`
+	Phone     string `json:"phone"`
 	Street    string `json:"street"`
 	City      string `json:"city"`
 	State     string `json:"state"`
-	Zip       int    `json:"zip"`
+	Zip       string `json:"zip"`
 }

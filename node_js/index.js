@@ -7,27 +7,36 @@ const Person = require('./Person');
 const app = express();
 app.use(express.static('client/build'));
 
-// GET 'Hello World!' will send back 'hello world' as a string
-app.get('/helloworld', (req, res) => {
-  res.send('Hello World!');
-});
-
-// GET json blob- array of 100 random persons
-app.get('/persons', (req, res) => {
+function createPersons() {
   const persons = [];
   for(let i = 0; i < 101; i++) {
     const person = new Person(
       randomstring.generate({ length: 7, charset: 'alphabetic'}), // first name
       randomstring.generate({ length: 7, charset: 'alphabetic'}), // lastName
       randomstring.generate({ length: 15, charset: 'alphabetic'}), // id
-      randomstring.generate({ length: 10, charset: 'numeric'}), // phone
+      randomstring.generate({ length: 10, charset: 'alphabetic'}), // phone
       randomstring.generate({ length: 15, charset: 'alphabetic'}), // street
       randomstring.generate({ length: 10, charset: 'alphabetic'}), // city
       randomstring.generate({ length: 2, charset: 'alphabetic'}), // state
-      randomstring.generate({ length: 5, charset: 'numeric'}) // zip
+      randomstring.generate({ length: 5, charset: 'alphabetic'}) // zip
     );
     persons.push(person);
   }
+}
+
+// GET 'Hello World!' will send back 'hello world' as a string
+app.get('/helloworld', (req, res) => {
+  res.send('Hello World!');
+});
+
+// GET random string will send back random string of 100 characters
+app.get('/randomstring', (req, res) => {
+  res.send(randomstring.generate({ length: 100, charset: 'alphabetic'}));
+});
+
+// GET json blob- array of 100 random persons
+app.get('/persons', (req, res) => {
+  const persons = createPersons();
   res.send(persons);
 });
 
