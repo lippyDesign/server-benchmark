@@ -17,13 +17,13 @@ app.get('/persons', (req, res) => {
   const persons = [];
   for(let i = 0; i < 101; i++) {
     const person = new Person(
-      randomstring.generate(7), // first name
-      randomstring.generate(7), // lastName
-      randomstring.generate(15), // id
-      randomstring.generate(10), // phone
-      randomstring.generate(15), // street
-      randomstring.generate(10), // city
-      randomstring.generate(2), // state
+      randomstring.generate({ length: 7, charset: 'alphabetic'}), // first name
+      randomstring.generate({ length: 7, charset: 'alphabetic'}), // lastName
+      randomstring.generate({ length: 15, charset: 'alphabetic'}), // id
+      randomstring.generate({ length: 10, charset: 'numeric'}), // phone
+      randomstring.generate({ length: 15, charset: 'alphabetic'}), // street
+      randomstring.generate({ length: 10, charset: 'alphabetic'}), // city
+      randomstring.generate({ length: 2, charset: 'alphabetic'}), // state
       randomstring.generate({ length: 5, charset: 'numeric'}) // zip
     );
     persons.push(person);
