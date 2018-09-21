@@ -40,11 +40,11 @@ func createPersons() []*Person {
 			FirstName: randStringBytesMaskImpr(7),
 			LastName:  randStringBytesMaskImpr(7),
 			ID:        randStringBytesMaskImpr(15),
-			Phone:     rand.Intn(10000000000),
+			Phone:     randStringBytesMaskImpr(10),
 			Street:    randStringBytesMaskImpr(15),
 			City:      randStringBytesMaskImpr(10),
 			State:     randStringBytesMaskImpr(2),
-			Zip:       rand.Intn(100000),
+			Zip:       randStringBytesMaskImpr(5),
 		}
 		persons = append(persons, person)
 	}
@@ -57,6 +57,11 @@ func main() {
 	// GET 'Hello World!' will send back 'hello world' as a string
 	engine.GET("/helloworld", func(c *gin.Context) {
 		c.String(http.StatusOK, "Hello World!")
+	})
+
+	// GET random string will send back random string of 100 characters
+	engine.GET("/randomstring", func(c *gin.Context) {
+		c.String(http.StatusOK, randStringBytesMaskImpr(100))
 	})
 
 	// GET static files
