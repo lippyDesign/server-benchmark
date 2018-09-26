@@ -1,11 +1,12 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"math/rand"
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -50,7 +51,7 @@ func createPersons() []*Person {
 		persons = append(persons, person)
 	}
 	end := time.Now().UnixNano() / int64(time.Millisecond)
-	print(end-start)
+	print(end - start)
 	println("ms to complete createPersons")
 	return persons
 }

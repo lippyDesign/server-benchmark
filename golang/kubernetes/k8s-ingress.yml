@@ -1,0 +1,11 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: go-server
+  labels:
+    app: go-server
+    tier: frontend
+spec:
+  backend:
+    serviceName: go-server
+    servicePort: 5000
