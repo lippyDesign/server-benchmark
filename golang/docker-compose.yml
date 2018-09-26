@@ -1,0 +1,9 @@
+version: '2'
+services: 
+  go-server:
+    build: .
+    image: go-server:1.0.1
+    environment: 
+    - PORT=5000
+    ports: 
+    - "5000:5000"
