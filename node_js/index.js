@@ -1,5 +1,6 @@
 const express = require('express');
 var randomstring = require("randomstring");
+var now = require("performance-now")
 const path = require('path');
 const Person = require('./Person');
 
@@ -8,6 +9,7 @@ const app = express();
 app.use(express.static('client/build'));
 
 function createPersons() {
+  var start = now()
   const persons = [];
   for(let i = 0; i < 101; i++) {
     const person = new Person(
@@ -22,6 +24,9 @@ function createPersons() {
     );
     persons.push(person);
   }
+  var end = now();
+  console.log((end - start).toFixed(3) + "ms to complete createPersons")
+  return persons;
 }
 
 // GET 'Hello World!' will send back 'hello world' as a string

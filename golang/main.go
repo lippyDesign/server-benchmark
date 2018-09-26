@@ -1,11 +1,11 @@
 package main
 
 import (
+	"github.com/gin-gonic/gin"
 	"math/rand"
 	"net/http"
 	"os"
-
-	"github.com/gin-gonic/gin"
+	"time"
 )
 
 const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -34,6 +34,7 @@ func randStringBytesMaskImpr(n int) string {
 }
 
 func createPersons() []*Person {
+	start := time.Now().UnixNano() / int64(time.Millisecond)
 	var persons []*Person
 	for i := 0; i < 101; i++ {
 		person := &Person{
@@ -48,6 +49,9 @@ func createPersons() []*Person {
 		}
 		persons = append(persons, person)
 	}
+	end := time.Now().UnixNano() / int64(time.Millisecond)
+	print(end-start)
+	println("ms to complete createPersons")
 	return persons
 }
 
